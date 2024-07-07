@@ -1,0 +1,35 @@
+{
+  "name": "namaste-food",
+  "version": "1.0.0",
+  "description": "Food Ordering web app",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "rm -rf .parcel-cache && parcel index.html",
+    "build": "rm -rf .parcel-cache && parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nayan156/namaste-food.git"
+  },
+  "author": "Nayan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nayan156/namaste-food/issues"
+  },
+  "homepage": "https://github.com/Nayan156/namaste-food#readme",
+
+  "devDependencies": {
+    "parcel": "^2.12.0",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "browserslist": [
+    "last 2 Chrome versions",
+    "last 2 Firefox versions"
+  ]
+
+}
