@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { restaurentsList } from "./restaurents";
 
 
 const Header = () => {
@@ -20,11 +21,16 @@ const Header = () => {
     )
 }
 
-const RestrauntCard = () => {
+const RestrauntCard = (props) => {
+    const {resData} = props;
+    const {name, cuisines, costForTwo, avgRatingString} = resData?.info;
     return (
         <div className="res-card">
-            <img className="res-logo" alt="res-logo" src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/e0839ff574213e6f35b3899ebf1fc597" />
-            <h3>Meghana Foods</h3>
+            <img className="res-logo" alt="res-logo" src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${resData.info.cloudinaryImageId}`} />
+            <h3>{name}</h3>
+            <h4>{cuisines?.join(", ")}</h4>
+            <h4>{costForTwo}</h4>
+            <h5>{avgRatingString} stars</h5>
         </div>
     )
 }
@@ -36,9 +42,13 @@ const Body = () => {
             Search
         </div>
         <div className="res-container">
-            <div className="res-card-container">
-            <RestrauntCard />
-            </div>
+            {/* <RestrauntCard ResImage="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/e0839ff574213e6f35b3899ebf1fc597" ResName="Meghana Foods"/> */}
+            {/* <RestrauntCard resData={resOBJ} /> */}
+            {
+                restaurentsList.map((restaurent) => (
+                <RestrauntCard key={restaurent?.info?.id} resData={restaurent}/>
+                ))
+            }
         </div>
     </div>
     )
