@@ -1,5 +1,5 @@
 export const restaurentsList =  [
-    {
+    {//0
       "info": {
         "id": "636890",
         "name": "Chinese Wok",
@@ -85,7 +85,7 @@ export const restaurentsList =  [
         "type": "WEBLINK"
       }
     },
-    {
+    {//1
       "info": {
         "id": "608589",
         "name": "Pizza Hut",
@@ -180,7 +180,7 @@ export const restaurentsList =  [
         "type": "WEBLINK"
       }
     },
-    {
+    {//2
       "info": {
         "id": "438435",
         "name": "Burger King",
@@ -276,7 +276,7 @@ export const restaurentsList =  [
         "type": "WEBLINK"
       }
     },
-    {
+    {//3
       "info": {
         "id": "89559",
         "name": "UBQ by Barbeque Nation",
@@ -366,7 +366,7 @@ export const restaurentsList =  [
         "type": "WEBLINK"
       }
     },
-    {
+    {//4
       "info": {
         "id": "707692",
         "name": "KFC",
@@ -451,7 +451,7 @@ export const restaurentsList =  [
         "type": "WEBLINK"
       }
     },
-    {
+    {//5
       "info": {
         "id": "462638",
         "name": "Domino's Pizza",
@@ -550,7 +550,7 @@ export const restaurentsList =  [
         "type": "WEBLINK"
       }
     },
-    {
+    {//6
       "info": {
         "id": "253981",
         "name": "McDonald's",
@@ -645,7 +645,7 @@ export const restaurentsList =  [
         "type": "WEBLINK"
       }
     },
-    {
+    {//7
       "info": {
         "id": "10710",
         "name": "Subway",
@@ -730,7 +730,7 @@ export const restaurentsList =  [
         "type": "WEBLINK"
       }
     },
-    {
+    {//8
       "info": {
         "id": "581572",
         "name": "Wow! Momo",
@@ -842,7 +842,7 @@ export const restaurentsList =  [
         "type": "WEBLINK"
       }
     },
-    {
+    {//9
       "info": {
         "id": "637739",
         "name": "La Pino'z Pizza",
@@ -929,7 +929,7 @@ export const restaurentsList =  [
         "type": "WEBLINK"
       }
     },
-    {
+    {//10
       "info": {
         "id": "798794",
         "name": "Bakingo",
@@ -1027,7 +1027,7 @@ export const restaurentsList =  [
         "type": "WEBLINK"
       }
     },
-    {
+    {//11
       "info": {
         "id": "732151",
         "name": "Kwality Walls Frozen Dessert and Ice Cream Shop",
@@ -1125,7 +1125,7 @@ export const restaurentsList =  [
         "type": "WEBLINK"
       }
     },
-    {
+    {//12
       "info": {
         "id": "751396",
         "name": "The Belgian Waffle Co.",
