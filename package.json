@@ -18,7 +18,6 @@
     "url": "https://github.com/Nayan156/namaste-food/issues"
   },
   "homepage": "https://github.com/Nayan156/namaste-food#readme",
-
   "devDependencies": {
     "@babel/core": "^7.22.9",
     "@babel/preset-env": "^7.22.9",
@@ -38,10 +37,10 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.1",
-    "react-router-dom": "^6.11.2"
+    "react-router-dom": "^6.25.1"
   },
   "browserslist": [
-   "last 2 versions"
+    "last 2 versions"
   ]
-
+  
 }
