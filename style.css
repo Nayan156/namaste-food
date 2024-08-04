@@ -82,3 +82,15 @@
 .filter{
     display:flex;
 }
+
+.user-card{
+    padding: 10px;
+    border: 1px solid black;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.user-img{
+    margin-right: 20px;
+    width: 200px;
+}
