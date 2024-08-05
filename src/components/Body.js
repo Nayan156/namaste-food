@@ -2,10 +2,16 @@ import RestrauntCard from "./RestaurntCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
-    const [allRestaurents, setAllRestaurents] = useState([]);
-    const [restaurants, setRestaurants] =useState([]);
+    const [restaurantData, setRestaurantData] = useState({
+        allRestaurents: [],
+        restaurants: [],
+        // topRatedRestaurents: true
+    })
+    // const [allRestaurents, setAllRestaurents] = useState([]);
+    // const [restaurants, setRestaurants] =useState([]);
     const [topRatedRestaurents, setTopRatedRestaurants] = useState(true);
     const [searchText, setSearchTech] = useState("");
 
@@ -17,8 +23,13 @@ const Body = () => {
     const fetchData = async () => {
         const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.61450&lng=77.30630&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
         data.json().then((json) => {
-        setRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setAllRestaurents(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        // setRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        // setAllRestaurents(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setRestaurantData({
+            ...restaurantData,
+            allRestaurents: json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants,
+            restaurants: json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants,
+        })
     });
     }
 
@@ -31,36 +42,47 @@ const Body = () => {
         }
     }
 
+    const onlineStatus = useOnlineStatus();
+    if(!onlineStatus) return <h1>Looks like you are Offline!!! Please check your internet</h1>
+
     const loadBerforeFilter = (data) => {
-        setRestaurants([]);
-        setTimeout(()=>{setRestaurants(data)}, 350)
+        setRestaurantData({
+            ...restaurantData,
+            restaurants: [],
+        });
+        setTimeout(()=>{setRestaurantData({
+            ...restaurantData,
+            restaurants: data,
+        })}, 350)
     }
     // Conditional Rendering
     // if(restaurants.length === 0){
     //     return <Shimmer />
     // }
  
-    return  restaurants.length === 0 ? <Shimmer /> :(
+    return  restaurantData.restaurants.length === 0 ? <Shimmer /> :(
     <div className="body">
         <div className="filter">
             <div className="search">
             <input className="search-box" type="text" value={searchText} onChange={(e)=>{setSearchTech(e.target.value)}}/>
             <button className="search-btn" onClick={()=>{
                 if(searchText === ""){
-                    loadBerforeFilter(allRestaurents);
+                    loadBerforeFilter(restaurantData.allRestaurents);
+                    if(!topRatedRestaurents) setTopRatedRestaurants(true);
                 }
                 else{
-                    searchFunction(allRestaurents.filter((res)=> res.info.name.toLowerCase().includes(searchText.toLowerCase())));
+                    searchFunction(restaurantData.allRestaurents.filter((res)=> res.info.name.toLowerCase().includes(searchText.toLowerCase())));
+                    if(!topRatedRestaurents) setTopRatedRestaurants(true);
                 }
             }}>Search</button>
             </div>
             {topRatedRestaurents?(<button className="filter-btn" onClick={()=>{
-                loadBerforeFilter(allRestaurents.filter(res => res.info.avgRating >= 4.5));
+                loadBerforeFilter(restaurantData.allRestaurents.filter(res => res.info.avgRating >= 4.5));
                 setTopRatedRestaurants(false);
             }}>
                 Top Rated Restaurents
             </button>):(<button className="filter-btn" onClick={()=>{
-                loadBerforeFilter(allRestaurents);
+                loadBerforeFilter(restaurantData.allRestaurents);
                 setTopRatedRestaurants(true);
             }}> All Restaurent</button>)}
         </div>
@@ -68,7 +90,7 @@ const Body = () => {
             {/* <RestrauntCard ResImage="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/e0839ff574213e6f35b3899ebf1fc597" ResName="Meghana Foods"/> */}
             {/* <RestrauntCard resData={resOBJ} /> */}
             {
-                restaurants.map((restaurent) => (
+                restaurantData.restaurants.map((restaurent) => (
                 <RestrauntCard key={restaurent?.info?.id} resId={restaurent?.info?.id} resData={restaurent}/>
                 ))
 
