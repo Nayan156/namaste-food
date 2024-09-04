@@ -1,4 +1,4 @@
-import RestrauntCard from "./RestaurntCard";
+import RestrauntCard, { withPromoted } from "./RestaurntCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -12,8 +12,9 @@ const Body = () => {
     })
     // const [allRestaurents, setAllRestaurents] = useState([]);
     // const [restaurants, setRestaurants] =useState([]);
-    const [topRatedRestaurents, setTopRatedRestaurants] = useState(true);
+    // const [topRatedRestaurents, setTopRatedRestaurants] = useState(true);
     const [searchText, setSearchTech] = useState("");
+    const RestaurantCardPromoted = withPromoted(RestrauntCard);
 
     useEffect(()=>{
         // console.log("useEffect Called");
@@ -62,35 +63,35 @@ const Body = () => {
  
     return  restaurantData.restaurants.length === 0 ? <Shimmer /> :(
     <div className="body">
-        <div className="filter">
-            <div className="search">
-            <input className="search-box" type="text" value={searchText} onChange={(e)=>{setSearchTech(e.target.value)}}/>
-            <button className="search-btn" onClick={()=>{
+        <div className="filter flex">
+            <div className="search m-4 p-4">
+            <input className="search-box border border-solid border-black p-1 rounded-sm" type="text" value={searchText} onChange={(e)=>{setSearchTech(e.target.value)}}/>
+            <button className="search-btn px-4 py-1.5 bg-green-100 rounded-lg" onClick={()=>{
                 if(searchText === ""){
                     loadBerforeFilter(restaurantData.allRestaurents);
-                    if(!topRatedRestaurents) setTopRatedRestaurants(true);
+                    // if(!topRatedRestaurents) setTopRatedRestaurants(true);
                 }
                 else{
                     searchFunction(restaurantData.allRestaurents.filter((res)=> res.info.name.toLowerCase().includes(searchText.toLowerCase())));
-                    if(!topRatedRestaurents) setTopRatedRestaurants(true);
+                    // if(!topRatedRestaurents) setTopRatedRestaurants(true);
                 }
             }}>Search</button>
             </div>
-            {topRatedRestaurents?(<button className="filter-btn" onClick={()=>{
+            <div className="flex items-center">
+            <button className="filter-btn px-4 py-1.5 m-6 bg-gray-200" onClick={()=>{
                 loadBerforeFilter(restaurantData.allRestaurents.filter(res => res.info.avgRating >= 4.5));
-                setTopRatedRestaurants(false);
+                // setTopRatedRestaurants(false);
             }}>
                 Top Rated Restaurents
-            </button>):(<button className="filter-btn" onClick={()=>{
-                loadBerforeFilter(restaurantData.allRestaurents);
-                setTopRatedRestaurants(true);
-            }}> All Restaurent</button>)}
+            </button>
+            </div>
         </div>
-        <div className="res-container">
+        <div className="res-container flex flex-wrap">
             {/* <RestrauntCard ResImage="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/e0839ff574213e6f35b3899ebf1fc597" ResName="Meghana Foods"/> */}
             {/* <RestrauntCard resData={resOBJ} /> */}
             {
                 restaurantData.restaurants.map((restaurent) => (
+                restaurent.info.isPromoted?<RestaurantCardPromoted key={restaurent?.info?.id} resId={restaurent?.info?.id} resData={restaurent} />:
                 <RestrauntCard key={restaurent?.info?.id} resId={restaurent?.info?.id} resData={restaurent}/>
                 ))
 

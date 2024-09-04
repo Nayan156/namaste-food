@@ -39,9 +39,9 @@ class UserClass extends React.Component{
         // console.log("Child Render");
 
         return(
-            <div className="user-card">
-                <img className="user-img" src={avatar_url} />
-                <div>
+            <div className="user-card flex border mx-5 my-5 px-3 py-2">
+                <img className="user-img w-36" src={avatar_url} />
+                <div className="text-lg mt-6 ml-10">
                     <h2>Name: {name}</h2>
                     {/* <h3 onClick={()=>{
                         this.setState({
