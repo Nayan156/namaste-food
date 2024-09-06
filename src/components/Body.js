@@ -62,7 +62,7 @@ const Body = () => {
     // }
  
     return  restaurantData.restaurants.length === 0 ? <Shimmer /> :(
-    <div className="body">
+    <div className="body min-w-[1134px]">
         <div className="filter flex">
             <div className="search m-4 p-4">
             <input className="search-box border border-solid border-black p-1 rounded-sm" type="text" value={searchText} onChange={(e)=>{setSearchTech(e.target.value)}}/>

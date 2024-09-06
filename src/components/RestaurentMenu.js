@@ -32,7 +32,7 @@ const RestaurentMenu = () => {
     const categories = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards.filter((c) => c?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
 
     return (
-        <div className="menu text-center">
+        <div className="menu text-center min-w-[1134px]">
             <h1 className="my-6 text-2xl font-semibold">{name}</h1>
             <p className="text-lg font-bold mt-2">
                 {cuisines.join(",")} - {costForTwoMessage}

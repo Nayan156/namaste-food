@@ -7,7 +7,7 @@ const RestrauntCard = (props) => {
     return (
         <div className="res-card group m-4 p-4 w-[250px] rounded bg-[#f0f0f0] hover:bg-gray-300" >
             <Link to={"/restaurent/"+resId}>
-            <img className="res-logo rounded" alt="res-logo" src={CDN_URL+cloudinaryImageId} />
+            <img className="res-logo w-full h-[55%] rounded" alt="res-logo" src={CDN_URL+cloudinaryImageId} />
             <h3 className="font-bold text-lg py-1">{name}</h3>
             <h4>{cuisines?.join(", ")}</h4>
             <h4>{costForTwo}</h4>
